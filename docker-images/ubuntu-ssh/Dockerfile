@@ -14,4 +14,6 @@ RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' \
 
 EXPOSE 22
 
+ENV LANG C.UTF-8
+
 CMD ["/usr/sbin/sshd", "-D"]
