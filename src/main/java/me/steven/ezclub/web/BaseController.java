@@ -1,6 +1,5 @@
 package me.steven.ezclub.web;
 
-import me.steven.ezclub.domain.College;
 import me.steven.ezclub.domain.Province;
 import me.steven.ezclub.service.CityService;
 import me.steven.ezclub.service.CollegeService;
@@ -10,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("")
 public class BaseController {
 
@@ -34,17 +34,10 @@ public class BaseController {
     }
 
     @GetMapping("testdb")
-    @ResponseBody
-    public List<College> testDB() {
-
-        return clgSvs.listColleges();
-    }
-
-    @GetMapping("testdb2")
-    @ResponseBody
-    public Province testDB2() {
-
-        return pvSvs.getProvinceById("GD");
+    public List<Province> testDB() {
+        String[] a = new String[]{"a", "b"};
+        System.out.println(a[3]);
+        return pvSvs.listProvinces();
     }
 
 }
