@@ -1,18 +1,20 @@
 package me.steven.ezclub.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "city")
+//@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+@Table(name = "city", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "id"),
+        @UniqueConstraint(columnNames = "cn_name")
+})
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "cn_name", nullable = false, unique = true)
+    @Column(name = "cn_name", nullable = false)
     private String cnName;
 
     @Column(name = "en_name", nullable = false)
@@ -21,6 +23,14 @@ public class City {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "province_id")
     private Province province;
+
+    /*@JsonIgnore
+    @OneToOne(mappedBy = "fromCity")
+    private User user;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "city")
+    private Set<College> colleges;*/
 
     public City() {}
 

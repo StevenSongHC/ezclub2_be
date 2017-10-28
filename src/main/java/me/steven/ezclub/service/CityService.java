@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class CityService {
 
+    private final CityRepo cityRepo;
+
     @Autowired
-    private CityRepo cityRepo;
+    public CityService(CityRepo cityRepo) {
+        this.cityRepo = cityRepo;
+    }
 
     @Transactional
     public City save(City city) {

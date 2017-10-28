@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class ProvinceService {
 
+    private final ProvinceRepo provinceRepo;
+
     @Autowired
-    private ProvinceRepo provinceRepo;
+    public ProvinceService(ProvinceRepo provinceRepo) {
+        this.provinceRepo = provinceRepo;
+    }
 
     public List<Province> listProvinces() {
         return provinceRepo.findAll();
