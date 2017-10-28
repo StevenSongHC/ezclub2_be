@@ -9,7 +9,11 @@ public class ResponseData {
     private String msg;
     private Object data;
 
-    public ResponseData() {}
+    public ResponseData() {
+        // set to success by default
+        this.success = true;
+        this.code = 200;
+    }
 
     public ResponseData(Boolean success, Integer code, String msg, Object data) {
         this.success = success;
