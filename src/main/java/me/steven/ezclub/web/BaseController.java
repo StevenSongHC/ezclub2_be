@@ -27,12 +27,14 @@ public class BaseController {
     }
 
     @GetMapping
-    public String index() {
-        return "index";
+    public ResponseData index() {
+        result.setMsg("Hello! 你好");
+        return result;
     }
 
-    @GetMapping("testdb")
+    @GetMapping("test")
     public ResponseData testDB() {
+        result.setMsg("BE server connected");
         result.setData(pvSvs.listProvinces());
         return result;
     }
