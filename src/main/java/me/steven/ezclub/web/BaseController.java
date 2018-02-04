@@ -17,8 +17,6 @@ public class BaseController {
     private final CityService ctSvs;
     private final CollegeService clgSvs;
 
-    private ResponseData result = new ResponseData();
-
     @Autowired
     public BaseController(ProvinceService pvSvs, CityService ctSvs, CollegeService clgSvs) {
         this.pvSvs = pvSvs;
@@ -28,12 +26,14 @@ public class BaseController {
 
     @GetMapping
     public ResponseData index() {
+        ResponseData result = new ResponseData();
         result.setMsg("Hello! 你好");
         return result;
     }
 
     @GetMapping("test")
     public ResponseData testDB() {
+        ResponseData result = new ResponseData();
         result.setMsg("BE server connected");
         result.setData(pvSvs.listProvinces());
         return result;
