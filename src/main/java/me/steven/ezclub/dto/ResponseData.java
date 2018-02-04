@@ -4,20 +4,21 @@ import com.google.gson.Gson;
 
 public class ResponseData {
 
-    private Boolean success;
-    private Integer code;
-    private String msg;
-    private Object data;
+    private Boolean success;        // success flag
+    private Integer status;         // http status code
+    private Integer code;           // customized code
+    private String msg;             // message
+    private Object data;            // data to display
 
     public ResponseData() {
         // set to success by default
         this.success = true;
-        this.code = 200;
+        this.status = 200;
     }
 
-    public ResponseData(Boolean success, Integer code, String msg, Object data) {
+    public ResponseData(Boolean success, Integer status, String msg, Object data) {
         this.success = success;
-        this.code = code;
+        this.status = status;
         this.msg = msg;
         this.data = data;
     }
@@ -32,6 +33,12 @@ public class ResponseData {
     }
     public void setSuccess(Boolean success) {
         this.success = success;
+    }
+    public Integer getStatus() {
+        return status;
+    }
+    public void setStatus(Integer status) {
+        this.status = status;
     }
     public Integer getCode() {
         return code;

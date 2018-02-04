@@ -32,7 +32,7 @@ public class BaseController {
     }
 
     @GetMapping("test")
-    public ResponseData testDB() {
+    public ResponseData test() {
         ResponseData result = new ResponseData();
         result.setMsg("BE server connected");
         result.setData(pvSvs.listProvinces());
