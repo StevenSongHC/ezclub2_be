@@ -15,8 +15,8 @@ RUN /etc/init.d/postgresql start &&\
     createdb -O ezclub ezclub
 
 USER root
-RUN echo "local all all 0.0.0.0/0 md5" >> /etc/postgresql/9.6/main/pg_hba.conf
-RUN echo "host all all 192.168.0.0/16 md5" >> /etc/postgresql/9.6/main/pg_hba.conf
+RUN echo "local all all md5" >> /etc/postgresql/9.6/main/pg_hba.conf
+RUN echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/9.6/main/pg_hba.conf
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.6/main/postgresql.conf
 
 EXPOSE 5432
