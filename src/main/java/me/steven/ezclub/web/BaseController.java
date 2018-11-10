@@ -5,6 +5,9 @@ import me.steven.ezclub.dto.parameter.UserRegistration;
 import me.steven.ezclub.service.CityService;
 import me.steven.ezclub.service.CollegeService;
 import me.steven.ezclub.service.ProvinceService;
+import me.steven.ezclub.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +16,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("")
 public class BaseController {
 
+    private final UserService uSvs;
     private final ProvinceService pvSvs;
     private final CityService ctSvs;
     private final CollegeService clgSvs;
 
+    private final static Logger log = LoggerFactory.getLogger(BaseController.class);
+
     @Autowired
-    public BaseController(ProvinceService pvSvs, CityService ctSvs, CollegeService clgSvs) {
+    public BaseController(
+            UserService uSvs,
+            ProvinceService pvSvs,
+            CityService ctSvs,
+            CollegeService clgSvs) {
+        this.uSvs = uSvs;
         this.pvSvs = pvSvs;
         this.ctSvs = ctSvs;
         this.clgSvs = clgSvs;
@@ -42,9 +53,10 @@ public class BaseController {
     @PostMapping("submitRegister")
     public ResponseData submitRegister(@RequestBody UserRegistration registration) {
         ResponseData result = new ResponseData();
-        System.out.println("email " + registration.getEmail());
-        System.out.println("nickname " + registration.getNickname());
-        System.out.println("password " + registration.getPassword());
+        if (uSvs.save(registration) == null) {
+            result.setSuccess(false);
+            result.setMsg("未能成功注册用户信息");
+        }
         return result;
     }
 
